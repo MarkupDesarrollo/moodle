@@ -25,6 +25,8 @@ $CFG->admin     = 'admin';
 $CFG->allowframembedding = true;
 $CFG->routerconfigured = true;
 $CFG->directorypermissions = 0777;
+$CFG->debug = E_ALL;
+$CFG->debugdisplay = 1;
 
 require_once(__DIR__ . '/lib/setup.php');
 
