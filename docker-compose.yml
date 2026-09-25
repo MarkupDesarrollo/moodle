@@ -12,15 +12,14 @@ services:
       - MOODLE_DATABASE_NAME=markupdb_moodle
       - MOODLE_DATABASE_USER=markUpHost
       - MOODLE_DATABASE_PASSWORD=AwsDataBase.MarkUp2024
-    
-    composer:
+
+  composer:
     image: composer:2
     working_dir: /var/www/html
-    
+
     volumes:
       - ./:/var/www/html
       - /home/ubuntu/PhpProjects/moodledata:/var/www/moodledata
       - ./php/moodle.ini:/usr/local/etc/php/conf.d/99-moodle.ini:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
