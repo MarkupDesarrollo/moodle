@@ -20,6 +20,8 @@ $CFG->dboptions = array (
 
 $CFG->wwwroot   = 'https://trade.markup.ec/my-learning/markup-moodle';
 $CFG->dataroot  = '/var/www/moodledata';
+$CFG->sslproxy = true;
+$CFG->reverseproxy = true;
 $CFG->admin     = 'admin';
 $CFG->allowframembedding = true;
 
