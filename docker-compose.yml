@@ -1,0 +1,18 @@
+services:
+  moodle:
+    image: moodlehq/moodle-php-apache:8.3
+    container_name: moodle
+    restart: always
+    ports:
+      - "8001:80"
+    environment:
+      - MOODLE_DATABASE_TYPE=mysqli
+      - MOODLE_DATABASE_HOST=base-prod-restaurada.c3o8ui2u4fhv.us-east-1.rds.amazonaws.com
+      - MOODLE_DATABASE_NAME=markupdb_moodle
+      - MOODLE_DATABASE_USER=markUpHost
+      - MOODLE_DATABASE_PASSWORD=AwsDataBase.MarkUp2024
+    volumes:
+      - ./moodle:/var/www/html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
