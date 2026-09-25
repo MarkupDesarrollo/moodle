@@ -6,7 +6,7 @@ services:
     ports:
       - "8001:80"
     environment:
-      - APACHE_DOCUMENT_ROOT= /var/www/html/public
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
       - MOODLE_DATABASE_TYPE=mysqli
       - MOODLE_DATABASE_HOST=base-prod-restaurada.c3o8ui2u4fhv.us-east-1.rds.amazonaws.com
       - MOODLE_DATABASE_NAME=markupdb_moodle
