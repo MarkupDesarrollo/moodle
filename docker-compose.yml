@@ -6,13 +6,16 @@ services:
     ports:
       - "8001:80"
     environment:
+      - APACHE_DOCUMENT_ROOT= /var/www/html/public
       - MOODLE_DATABASE_TYPE=mysqli
       - MOODLE_DATABASE_HOST=base-prod-restaurada.c3o8ui2u4fhv.us-east-1.rds.amazonaws.com
       - MOODLE_DATABASE_NAME=markupdb_moodle
       - MOODLE_DATABASE_USER=markUpHost
       - MOODLE_DATABASE_PASSWORD=AwsDataBase.MarkUp2024
     volumes:
-      - ./moodle:/var/www/html
+      - ./:/var/www/html
+      - /home/ubuntu/PhpProjects/moodledata:/var/www/moodledata
+      - ./php/moodle.ini:/usr/local/etc/php/conf.d/99-moodle.ini:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
