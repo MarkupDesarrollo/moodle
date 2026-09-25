@@ -21,5 +21,6 @@ services:
       - ./:/var/www/html
       - /home/ubuntu/PhpProjects/moodledata:/var/www/moodledata
       - ./php/moodle.ini:/usr/local/etc/php/conf.d/99-moodle.ini:ro
+      - ./apache/moodle-router.conf:/etc/apache2/conf-enabled/moodle-router.conf:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
