@@ -19,6 +19,7 @@ services:
       - ./apache/moodle-router.conf:/etc/apache2/conf-enabled/moodle-router.conf:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "cerebro.markup.ec:52.204.139.165"
 
   composer:
     image: composer:2
