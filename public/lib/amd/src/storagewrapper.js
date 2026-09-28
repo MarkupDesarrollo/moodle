@@ -95,8 +95,28 @@ define(['core/config'], function(config) {
 
         var moodleVersion = config.jsrev;
         if (moodleVersion != cacheVersion) {
-            this.storage.clear();
+            var previousPrefix = this.hashString(config.wwwroot + '/' + cacheVersion) + '/';
+            this.removeByPrefix(previousPrefix);
+            this.removeByPrefix(this.prefix);
             this.storage.setItem(this.jsrevPrefix, config.jsrev);
+        }
+    };
+
+    /**
+     * Remove keys belonging to a specific Moodle cache namespace.
+     *
+     * Other applications can share the same origin and therefore the same browser storage.
+     * Removing only Moodle-prefixed keys prevents their data from being deleted.
+     *
+     * @method removeByPrefix
+     * @param {String} prefix The Moodle cache namespace to remove.
+     */
+    Wrapper.prototype.removeByPrefix = function(prefix) {
+        for (var i = this.storage.length - 1; i >= 0; i--) {
+            var key = this.storage.key(i);
+            if (key && key.indexOf(prefix) === 0) {
+                this.storage.removeItem(key);
+            }
         }
     };
 
@@ -168,7 +188,10 @@ define(['core/config'], function(config) {
      * @method clean
      */
     Wrapper.prototype.clean = function() {
-        this.storage.clear();
+        if (!this.supported) {
+            return;
+        }
+        this.removeByPrefix(this.prefix);
     };
 
     return Wrapper;
